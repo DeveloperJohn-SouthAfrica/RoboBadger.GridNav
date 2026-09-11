@@ -1,0 +1,32 @@
+﻿<Project Sdk="MSTest.Sdk/4.0.1">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="SampleDataFixtures/**/" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="SampleDataFixtures/**/.txt" />
+      <Content Include="SampleDataFixtures/**/*.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.12" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RoboBadger.GridNav.Application\RoboBadger.GridNav.Application.csproj" />
+      <ProjectReference Include="..\RoboBadger.GridNav.Constraints\RoboBadger.GridNav.Constraints.csproj" />
+    </ItemGroup>
+
+</Project>

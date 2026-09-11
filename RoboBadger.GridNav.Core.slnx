@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/SolutionItems/">
+    <File Path=".gitignore" />
+  </Folder>
+  <Project Path="RoboBadger.GridNav.Application/RoboBadger.GridNav.Application.csproj" />
+  <Project Path="RoboBadger.GridNav.Constraints/RoboBadger.GridNav.Constraints.csproj" />
+  <Project Path="RoboBadger.GridNav.Core.Tests\RoboBadger.GridNav.Core.Tests.csproj" />
+  <Project Path="RoboBadger.GridNav.Core/RoboBadger.GridNav.Core.csproj" />
+</Solution>
