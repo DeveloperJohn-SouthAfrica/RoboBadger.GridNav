@@ -4,13 +4,29 @@ using RoboBadger.GridNav.Constraints.TransmissionInterpretationExtensions;
 
 namespace RoboBadger.GridNav.Core.Tests;
 
+/// <summary>
+/// The ground transmission constraint tests class
+/// </summary>
 [TestClass]
 public class GroundTransmissionConstraintTests
 {
+    /// <summary>
+    /// The service collection
+    /// </summary>
     private IServiceCollection? _serviceCollection;
+    /// <summary>
+    /// The service provider
+    /// </summary>
     private IServiceProvider? _serviceProvider;
+    /// <summary>
+    /// The ground transmission validator
+    /// </summary>
     private IGroundTransmissionValidator? _groundTransmissionValidator;
     
+    /// <summary>
+    /// Initializes this instance
+    /// </summary>
+    /// <exception cref="FileNotFoundException">Test cannot initialise without test data</exception>
     [TestInitialize]
     public void Initialize()
     {
@@ -34,6 +50,9 @@ public class GroundTransmissionConstraintTests
             throw new FileNotFoundException("Test cannot initialise without test data");
     }
 
+    /// <summary>
+    /// Tests that ground transmission validator valid transmission passes
+    /// </summary>
     [TestMethod]
     [Description("Ensures the Ground Transmission Validator can validate a transmission from Ground Control to Mars Base")]
     public void GroundTransmissionValidator_ValidTransmission_Passes()

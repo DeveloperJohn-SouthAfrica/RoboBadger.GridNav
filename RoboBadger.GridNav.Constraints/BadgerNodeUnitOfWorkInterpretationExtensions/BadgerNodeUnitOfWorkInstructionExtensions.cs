@@ -1,8 +1,16 @@
 namespace RoboBadger.GridNav.Constraints.BadgerNodeUnitOfWorkInterpretationExtensions;
 
+/// <summary>
+/// The badger navigation extensions class
+/// </summary>
 public static class BadgerNavigationExtensions
 {
   
+    /// <summary>
+    /// Orientations the heading using the specified bearing factor
+    /// </summary>
+    /// <param name="bearingFactor">The bearing factor</param>
+    /// <returns>The string</returns>
     public static string OrientationHeading(this decimal bearingFactor)
     {
         var headings = new Dictionary<decimal, string>
@@ -16,6 +24,10 @@ public static class BadgerNavigationExtensions
         return headings.GetValueOrDefault(bearingFactor, "No grid compas heading found for this bearing factor");
     }
 
+    /// <summary>
+    /// Orientations the commands
+    /// </summary>
+    /// <returns>A dictionary of string and decimal</returns>
     public static Dictionary<string, decimal> OrientationCommands()
     {
         return new Dictionary<string, decimal>
@@ -30,6 +42,10 @@ public static class BadgerNavigationExtensions
     }
 
 
+    /// <summary>
+    /// Directions the commands
+    /// </summary>
+    /// <returns>A dictionary of string and decimal</returns>
     public static Dictionary<string, decimal> DirectionCommands() 
     {
         return new Dictionary<string, decimal>
@@ -40,6 +56,10 @@ public static class BadgerNavigationExtensions
         };
     }
 
+    /// <summary>
+    /// Movements the commands
+    /// </summary>
+    /// <returns>A dictionary of string and decimal</returns>
     public static Dictionary<string, decimal> MovementCommands()
     {
         return new Dictionary<string, decimal>

@@ -1,11 +1,18 @@
-﻿using RoboBadger.GridNav.Constraints.TransmissionInterpretationExtensions;
+using RoboBadger.GridNav.Constraints.TransmissionInterpretationExtensions;
 
 namespace RoboBadger.GridNav.Core.Tests;
 
+/// <summary>
+/// The ground transmission badger swarm interpreter tests class
+/// </summary>
 [TestClass]
 [DeploymentItem("SampleDataFixtures", "SampleDataFixtures")]
 public sealed class GroundTransmissionBadgerSwarmInterpreterTests
 {
+    /// <summary>
+    /// Initializes this instance
+    /// </summary>
+    /// <exception cref="FileNotFoundException">Test cannot initialise without test data</exception>
     [TestInitialize]
     public void Initialize()
     {
@@ -25,6 +32,9 @@ public sealed class GroundTransmissionBadgerSwarmInterpreterTests
             throw new FileNotFoundException("Test cannot initialise without test data");
     }
 
+    /// <summary>
+    /// Tests that ground control transmission grid parameter splice passes
+    /// </summary>
     [TestMethod]
     [Description("Ensures the Badger Swarm Grid Initialisation Parameters received from Ground Control are ready for interpretation")]
     public void GroundControlTransmission_GridParameterSplice_Passes()
@@ -40,6 +50,9 @@ public sealed class GroundTransmissionBadgerSwarmInterpreterTests
         Assert.AreEqual(expectedGridSlice, gridSlice, "GridNav Interpreter for BadgerGrid does not match test data");
     }
 
+    /// <summary>
+    /// Tests that ground control transmission badger count slice passes
+    /// </summary>
     [TestMethod]
     [Description("Ensures enough Mars Base badger nodes are available to process the commands from Ground Control Transmissions")]
     public void GroundControlTransmission_BadgerCountSlice_Passes()
@@ -56,6 +69,9 @@ public sealed class GroundTransmissionBadgerSwarmInterpreterTests
             $"Mars base has {expectedNodes} badger nodes, but ground control transmission sent a transmission for {actualNodes} badger nodes");
     }
 
+    /// <summary>
+    /// Tests that ground control transmission badger dispatch queue unit of work slice passes
+    /// </summary>
     [TestMethod]
     [Description("Ensures the dispatch queue has the same number of units of work as the number of badger nodes")]
     public void GroundControlTransmission_BadgerDispatchQueueUnitOfWorkSlice_Passes()
@@ -72,6 +88,9 @@ public sealed class GroundTransmissionBadgerSwarmInterpreterTests
             $"Mars base has {expectedNodes} badger nodes, but ground control transmission sent a transmission with {unitsOfWork} units of work");
     }
 
+    /// <summary>
+    /// Tests that ground control transmission computation rows slice passes
+    /// </summary>
     [TestMethod]
     [Description("Ensures that the rows of badger commands meets the 2 rows per badger node constraint")]
     public void GroundControlTransmission_ComputationRowsSlice_Passes()

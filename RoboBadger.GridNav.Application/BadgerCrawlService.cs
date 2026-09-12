@@ -3,8 +3,19 @@ using RoboBadger.GridNav.Constraints.BadgerNodeUnitOfWorkInterpretationExtension
 
 namespace RoboBadger.GridNav.Application;
 
+/// <summary>
+/// The badger crawl service class
+/// </summary>
+/// <seealso cref="IBadgerCrawlService"/>
 public class BadgerCrawlService : IBadgerCrawlService
 {
+    /// <summary>
+    /// Crawls the forward using the specified step orientation
+    /// </summary>
+    /// <param name="stepOrientation">The step orientation</param>
+    /// <param name="currentYPosition">The current position</param>
+    /// <param name="currentXPosition">The current position</param>
+    /// <returns>A task of int current x position and int current y position</returns>
     public async Task <(int currentXPosition, int currentYPosition)> CrawlForwardAsync(decimal stepOrientation, int currentYPosition, int currentXPosition)
     {
         if (stepOrientation == BadgerNavigationExtensions.OrientationCommands()["N"])

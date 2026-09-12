@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 using RoboBadger.GridNav.Application.ServiceDefinitions;
 using RoboBadger.GridNav.Constraints;
 using RoboBadger.GridNav.Constraints.BadgerNodeUnitOfWorkInterpretationExtensions;
@@ -6,12 +6,21 @@ using RoboBadger.GridNav.Constraints.TransmissionInterpretationExtensions;
 
 namespace RoboBadger.GridNav.Application;
 
+/// <summary>
+/// The badger swarm processor class
+/// </summary>
+/// <seealso cref="IBadgerSwarmProcessor"/>
 public class BadgerSwarmProcessor(
     IBadgerSafetyEmissionService badgerSafetyEmissionService,
     IBadgerCrawlService badgerCrawlService, 
     IGroundTransmissionValidator groundTransmissionValidator) : IBadgerSwarmProcessor
 {
 
+    /// <summary>
+    /// Processes the transmission using the specified ground control payload
+    /// </summary>
+    /// <param name="groundControlPayload">The ground control payload</param>
+    /// <returns>The final result</returns>
     public async Task<string> ProcessTransmission(string groundControlPayload)
     {
         SanitiseInputs(groundControlPayload);
@@ -34,6 +43,10 @@ public class BadgerSwarmProcessor(
         return finalResult;
     }
 
+    /// <summary>
+    /// Sanitises the inputs using the specified ground control payload
+    /// </summary>
+    /// <param name="groundControlPayload">The ground control payload</param>
     private void SanitiseInputs(string groundControlPayload)
     {
         var valid = groundTransmissionValidator.RunTransmissionValidation(groundControlPayload);
@@ -46,6 +59,14 @@ public class BadgerSwarmProcessor(
         });
     }
 
+    /// <summary>
+    /// Processes the dispatch queue using the specified ground control payload
+    /// </summary>
+    /// <param name="groundControlPayload">The ground control payload</param>
+    /// <param name="swarmOrchestrationQueue">The swarm orchestration queue</param>
+    /// <param name="results">The results</param>
+    /// <exception cref="InvalidOperationException">Crawl sequence queue is empty</exception>
+    /// <returns>The results</returns>
     public async Task<List<(string X, string Y, string Heading, string? Status)>> ProcessDispatchQueue(string groundControlPayload, Queue<(int BadgerNumber, string Position, string Instructions)> swarmOrchestrationQueue, List<(string X, string Y, string Heading, string? Status)> results)
     {
         for (int i = 0; i < groundControlPayload.BadgerInstructionDispatchQueue().Count; i++)
@@ -79,6 +100,21 @@ public class BadgerSwarmProcessor(
         return results;
     }
 
+    /// <summary>
+    /// Runs the badger node command sequence using the specified ground control payload
+    /// </summary>
+    /// <param name="groundControlPayload">The ground control payload</param>
+    /// <param name="results">The results</param>
+    /// <param name="sequenceQueueItem">The sequence queue item</param>
+    /// <param name="currentOrientation">The current orientation</param>
+    /// <param name="crawlSequence">The crawl sequence</param>
+    /// <param name="crawCommandNumber">The craw command number</param>
+    /// <param name="stepOrientation">The step orientation</param>
+    /// <param name="currentXPosition">The current position</param>
+    /// <param name="currentYPosition">The current position</param>
+    /// <param name="weLostOurBadger">The we lost our badger</param>
+    /// <param name="j">The </param>
+    /// <returns>A task containing the decimal step orientation int current position int current position bool we lost our badger int</returns>
     private async Task<(decimal stepOrientation, int currentXPosition, int currentYPosition, bool weLostOurBadger, int j)> RunBadgerNodeCommandSequenceAsync(string groundControlPayload, List<(string X, string Y, string Heading, string? Status)> results, (string Command, decimal Value) sequenceQueueItem, decimal currentOrientation, Queue<(string Command, decimal Value)> crawlSequence, int crawCommandNumber, decimal stepOrientation,
         int currentXPosition, int currentYPosition, bool weLostOurBadger, int j)
     {

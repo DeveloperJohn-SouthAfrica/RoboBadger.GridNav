@@ -4,13 +4,26 @@ using RoboBadger.GridNav.Core.Tests.ConfigurationContainer;
 
 namespace RoboBadger.GridNav.Core.Tests;
 
+/// <summary>
+/// The badger node crawl tests class
+/// </summary>
 [TestClass]
 [DeploymentItem("SampleDataFixtures", "SampleDataFixtures")]
 public class BadgerNodeCrawlTests
 {
+    /// <summary>
+    /// The services
+    /// </summary>
     private IServiceCollection _services;
+    /// <summary>
+    /// The badger swarm processor
+    /// </summary>
     private IBadgerSwarmProcessor _badgerSwarmProcessor;
     
+    /// <summary>
+    /// Initializes this instance
+    /// </summary>
+    /// <exception cref="FileNotFoundException">Test cannot initialise without test data</exception>
     [TestInitialize]
     public void Initialize()
     {
@@ -34,6 +47,9 @@ public class BadgerNodeCrawlTests
             throw new FileNotFoundException("Test cannot initialise without test data");
     }
 
+    /// <summary>
+    /// Tests that full badger swarm work queue clear success
+    /// </summary>
     [TestMethod]
     public async Task FullBadgerSwarmWorkQueueClear_Success()
     {

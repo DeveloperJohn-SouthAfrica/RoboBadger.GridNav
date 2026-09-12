@@ -1,8 +1,11 @@
-﻿using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using RoboBadger.GridNav.Constraints.BadgerNodeUnitOfWorkInterpretationExtensions;
 
 namespace RoboBadger.GridNav.Constraints.TransmissionInterpretationExtensions;
 
+/// <summary>
+/// The ground transmission splice extensions class
+/// </summary>
 public static class GroundTransmissionSpliceExtensions
 {
     /// <param name="transmission"></param>

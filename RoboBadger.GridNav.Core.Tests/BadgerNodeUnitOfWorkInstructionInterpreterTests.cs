@@ -3,10 +3,17 @@ using RoboBadger.GridNav.Constraints.TransmissionInterpretationExtensions;
 
 namespace RoboBadger.GridNav.Core.Tests;
 
+/// <summary>
+/// The badger node unit of work location interpreter tests class
+/// </summary>
 [TestClass]
 [DeploymentItem("SampleDataFixtures", "SampleDataFixtures")]
 public class BadgerNodeUnitOfWorkLocationInterpreterTests
 {
+    /// <summary>
+    /// Initializes this instance
+    /// </summary>
+    /// <exception cref="FileNotFoundException">Test cannot initialise without test data</exception>
     [TestInitialize]
     public void Initialize()
     {
@@ -27,6 +34,9 @@ public class BadgerNodeUnitOfWorkLocationInterpreterTests
     }
 
     // test dispatch queue returns horizontal in sequence
+    /// <summary>
+    /// Tests that ground control transmission instruction queue runs serial badger crawl passes
+    /// </summary>
     [TestMethod]
     [Description("Ensures that interpretation of X, Y and Orientation are correct for each badger node in the dispatch queue")]
     public void GroundControlTransmission_InstructionQueueRunsSerialBadgerCrawl_Passes()
